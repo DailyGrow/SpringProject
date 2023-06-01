@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>2.1.8.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.atspring.springpro</groupId>
@@ -14,10 +14,16 @@
     <name>springpro-product</name>
     <description>springpro-product</description>
     <properties>
-        <java.version>20</java.version>
-        <spring-cloud.version>2022.0.2</spring-cloud.version>
+        <java.version>8</java.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>com.atspring.springpro</groupId>
+            <artifactId>springpro-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -32,6 +38,33 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 改用oss，写在了common里
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.15.1</version>
+        </dependency>
+        -->
     </dependencies>
     <dependencyManagement>
         <dependencies>

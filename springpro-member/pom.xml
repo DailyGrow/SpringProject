@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>2.1.8.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.atspring.springpro</groupId>
@@ -14,10 +14,15 @@
     <name>springpro-member</name>
     <description>springpro-member</description>
     <properties>
-        <java.version>20</java.version>
-        <spring-cloud.version>2022.0.2</spring-cloud.version>
+        <java.version>8</java.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.atspring.springpro</groupId>
+            <artifactId>springpro-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
