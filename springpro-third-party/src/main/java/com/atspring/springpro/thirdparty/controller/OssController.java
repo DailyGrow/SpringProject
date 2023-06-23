@@ -4,6 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
+import com.atspring.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class OssController {
     private String accessId;
 
     @RequestMapping("/oss/policy")
-    public Map<String, String> policy(){
+    public R policy(){
         //String accessId = "yourAccessKeyId";
         //String accessKey = "yourAccessKeySecret";
         // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
@@ -79,7 +80,7 @@ public class OssController {
             System.out.println(e.getMessage());
         }
 
-        return respMap;
+        return R.ok().put("data", respMap);
     }
 }
 

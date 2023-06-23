@@ -7,7 +7,13 @@ spring:
   application:
     name: springpro-third-party
 
-
+alibaba:
+  cloud:
+    access-key: LTAI5t8gSRopfSGGtQZK27Yw
+    secret-key: Uz10a1ozHROQvF0W65ZGxyRLJ86n6c
+    oss:
+      endpoint: oss-us-west-1.aliyuncs.com
+      bucket: springpro1
 
 server:
   port: 30000

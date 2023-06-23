@@ -18,12 +18,27 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
+
         - id: third_party_route
           uri: lb://springpro-third-party
           predicates:
             - Path=/api/thirdparty/**
           filters:
             - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
+        - id: member_route
+          uri: lb://springpro-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: ware_route
+          uri: lb://springpro-ware
+          predicates:
+           - Path=/api/ware/**
+          filters:
+           - RewritePath=/api/(?<segment>.*),/$\{segment}
 
         - id: admin_route
           uri: lb://renren-fast
@@ -32,6 +47,15 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
 
+        - id: springpro_host_route
+          uri: lb://springpro-product
+          predicates:
+            - Host=springpro.com
+
+        - id: springpro_search_route
+          uri: lb://springpro-search
+          predicates:
+            - Host=search.springpro.com
 
 
 ##前端项目, /api

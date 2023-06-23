@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients(basePackages = "com.atspring.springpro.member.fegin")
-@EnableDiscoveryClient
+@EnableDiscoveryClient //开启服务注册与发现功能
 @SpringBootApplication
 public class SpringproMemberApplication {
 
