@@ -29,4 +29,6 @@ public class SearchParam {
     private List<String> attrs;//按照属性进行筛选
 
     private Integer pageNum = 1;//页码
+
+    private String _queryString; //原生的所有查询条件
 }

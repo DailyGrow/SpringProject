@@ -50,12 +50,17 @@ spring:
         - id: springpro_host_route
           uri: lb://springpro-product
           predicates:
-            - Host=springpro.com
+            - Host=springpro.com, item.springpro.com
 
         - id: springpro_search_route
           uri: lb://springpro-search
           predicates:
             - Host=search.springpro.com
+
+        - id: springpro_cart_route
+          uri: lb://springpro-cart
+          predicates:
+            - Host=cart.springpro.com
 
 
 ##前端项目, /api
