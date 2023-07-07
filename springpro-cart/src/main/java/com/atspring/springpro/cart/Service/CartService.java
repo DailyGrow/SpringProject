@@ -3,6 +3,7 @@ package com.atspring.springpro.cart.Service;
 import com.atspring.springpro.cart.Vo.Cart;
 import com.atspring.springpro.cart.Vo.CartItem;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface CartService {
@@ -42,5 +43,7 @@ public interface CartService {
     删除购物项
      */
     void deleteItem(Long skuId);
+
+    List<CartItem> getUserCartItems();
 
 }

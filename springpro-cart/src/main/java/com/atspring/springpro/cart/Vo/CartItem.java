@@ -16,6 +16,8 @@ public class CartItem {
     private String image;
     private List<String> skuAttr;
     private BigDecimal price;
+    private Integer count;
+    private BigDecimal totalPrice;
 
     public Long getSkuId() {
         return skuId;
@@ -81,8 +83,7 @@ public class CartItem {
         this.totalPrice = totalPrice;
     }
 
-    private Integer count;
-    private BigDecimal totalPrice;
+
 
 
 

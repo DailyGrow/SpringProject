@@ -62,5 +62,11 @@ spring:
           predicates:
             - Host=cart.springpro.com
 
+        - id: springpro_order_route
+          uri: lb://springpro-order
+          predicates:
+            - Host=order.springpro.com
+
+
 
 ##前端项目, /api

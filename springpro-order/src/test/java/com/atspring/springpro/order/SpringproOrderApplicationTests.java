@@ -1,15 +1,18 @@
 package com.atspring.springpro.order;
 
+import com.atspring.springpro.order.entity.OrderReturnReasonEntity;
+import com.rabbitmq.client.Channel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,11 +27,29 @@ public class SpringproOrderApplicationTests {
     @Test
     public void sendMessageText(){
 
+        OrderReturnReasonEntity reasonEntity = new OrderReturnReasonEntity();
+        reasonEntity.setName("hh");
         //发送消息，如果发送的消息是个对象吗，我们会使用序列化机制，将对象写出去，对象需实现Serializable
 
         //发送对象的消息，可以是json
         String msg = "hello world";
-        rabbitTemplate.convertAndSend("hello-java-exchange","hello.java",msg);
+        //correlatiuonData:代表消息的唯一id
+        rabbitTemplate.convertAndSend("hello-java-exchange","hello.java",msg,new CorrelationData(UUID.randomUUID().toString()));
+    }
+
+    /*
+    queues:声明需要监听的所有队列
+    Message:原生消息详细信息：头+体
+    T<发送消息的类型> OrderReturnReasonEntity content
+    Channel channel:当前传输数据的通道
+
+    场景:
+    1)分布式下，订单服务启动多个：同一个消息，只能又一个客户端收到
+    2）只有一个消息处理完，方法运行结束，我们才能接受到下一个消息
+     */
+    @RabbitListener(queues ={"hello-java-queue"})
+    public void receiveMessage(Message message, OrderReturnReasonEntity content, Channel channel){
+
     }
     /*
     1.如何创建Exchange、Queue、Binding

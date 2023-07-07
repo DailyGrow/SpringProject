@@ -17,7 +17,7 @@ public class SpringproSessionConfig {
         DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
 
         cookieSerializer.setDomainName("springpro.com");
-        cookieSerializer.setCookieName("GULISESSION");
+        cookieSerializer.setCookieName("SPRINGSESSION");
 
         return cookieSerializer;
     }

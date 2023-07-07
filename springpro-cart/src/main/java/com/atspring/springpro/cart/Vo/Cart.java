@@ -50,7 +50,10 @@ public class Cart {
         BigDecimal amount = new BigDecimal("0");
         if(items!=null && items.size()>0){
             for(CartItem item: items){
-                amount = amount.add(item.getTotalPrice());
+                if(item.getCheck()){
+                    amount = amount.add(item.getTotalPrice());
+                }
+
             }
         }
         BigDecimal substract = amount.subtract(getReduce());

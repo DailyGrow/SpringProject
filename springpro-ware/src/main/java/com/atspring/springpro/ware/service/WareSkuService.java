@@ -1,6 +1,10 @@
 package com.atspring.springpro.ware.service;
 
+import com.atspring.common.to.mq.OrderTo;
+import com.atspring.common.to.mq.StockLockedTo;
+import com.atspring.springpro.ware.vo.LockStockResult;
 import com.atspring.springpro.ware.vo.SkuHasStockVo;
+import com.atspring.springpro.ware.vo.WareSkuLockVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atspring.common.utils.PageUtils;
 import com.atspring.springpro.ware.entity.WareSkuEntity;
@@ -22,5 +26,12 @@ public interface WareSkuService extends IService<WareSkuEntity> {
     void addStock(Long skuId, Long wareId, Integer skuNum);
 
     List<SkuHasStockVo> getSkusHasStock(List<Long> skuIds);
+
+    Boolean orderLockStock(WareSkuLockVo vo);
+
+    void unlockStock(StockLockedTo to);
+
+    void unlockStock(OrderTo orderTo);
+
 }
 
