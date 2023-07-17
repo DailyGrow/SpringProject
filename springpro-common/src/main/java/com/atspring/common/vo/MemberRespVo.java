@@ -91,8 +91,4 @@ public class MemberRespVo implements Serializable {
      */
     private String accessToken;
 
-    /**
-     * 社交登录过期时间
-     */
-    private long expiresIn;
 }

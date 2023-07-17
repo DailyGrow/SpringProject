@@ -93,7 +93,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /*
     级联更新所有关联的数据
-    @CacheEvict；缓存清楚,缓存一致性失效模式
+    @CacheEvict；缓存清除,缓存一致性失效模式
     @Cacheing 同时进行多种缓存操作
      */
 //    @Caching(evict={
@@ -219,7 +219,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      */
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
 
-        RLock lock = redisson.getLock("catalogJson-lock");
+        RLock lock = redisson.getLock("catalogJson-lock"); //缓存分布式锁redission
         lock.lock();
 
             //加锁成功，执行业务

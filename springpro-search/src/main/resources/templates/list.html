@@ -18,7 +18,7 @@
         <b class="header_head_p">
             <div style="overflow: hidden">
                 <a href="http://springpro.com" class="header_head_p_a1" style="width:73px;">
-                    谷粒商城首页
+                    商城首页
                 </a>
                 <a href="/static/search/#" class="header_head_p_a">
                     <!--<img src="/static/search/img/img_05.png" style="border-radius: 50%;"/>-->
@@ -64,10 +64,11 @@
         </b>
         <ul>
             <li>
-                <a href="/static/search/#" class="li_2">你好，请登录</a>
+                <a th:if="${session.loginUser == null}" href="http://auth.springpro.com/login.html" class="li_2">你好，请登录</a>
+                <a th:else style="width: 100px">[[${session.loginUser.nickname}]]</a>
             </li>
             <li>
-                <a href="/static/search/#">免费注册</a>
+                <a th:if="${session.loginUser == null}" href="http://auth.springro.com/reg.html">免费注册</a>
             </li>
             <span>|</span>
             <li>

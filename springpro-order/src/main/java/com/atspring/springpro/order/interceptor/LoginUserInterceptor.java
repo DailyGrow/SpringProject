@@ -31,12 +31,12 @@ public class LoginUserInterceptor implements HandlerInterceptor {
             return true;
         }else{
             //没登陆就去登录 TODO complete login
-            //request.getSession().setAttribute("msg","请先进行登录");
-            //response.sendRedirect("http://auth.springpro.com/login.html");
-            //return false;
+            request.getSession().setAttribute("msg","请先进行登录");
+            response.sendRedirect("http://auth.springpro.com/login.html");
+            return false;
 
-            LoginUser.set(attribute);
-            return true;
+           // LoginUser.set(attribute);
+            //return true;
         }
 
     }

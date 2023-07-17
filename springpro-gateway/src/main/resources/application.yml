@@ -67,6 +67,11 @@ spring:
           predicates:
             - Host=order.springpro.com
 
+        - id: springpro_auth_route
+          uri: lb://springpro-auth-server
+          predicates:
+            - Host=auth.springpro.com
+
 
 
 ##前端项目, /api

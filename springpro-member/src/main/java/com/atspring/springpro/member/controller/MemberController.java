@@ -4,13 +4,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+import com.atspring.common.exception.BizCodeEnume;
+import com.atspring.springpro.member.exception.PhoneExistException;
+import com.atspring.springpro.member.exception.UsernameExistException;
 import com.atspring.springpro.member.fegin.CouponFeginService;
+import com.atspring.springpro.member.vo.MemberLoginVo;
+import com.atspring.springpro.member.vo.MemberRegistVo;
+import com.atspring.springpro.member.vo.SocialUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atspring.springpro.member.entity.MemberEntity;
 import com.atspring.springpro.member.service.MemberService;
@@ -41,6 +43,45 @@ public class MemberController {
         memberEntity.setNickname("张三");
         R membercoupons = couponFeginService.membercoupons();
         return R.ok().put("member", memberEntity).put("coupons", membercoupons.get("coupons"));
+    }
+
+    @PostMapping("/oauth2/login")
+    public R oauthlogin(@RequestBody SocialUser socialUser) throws Exception {
+
+        MemberEntity entity = memberService.login(socialUser);
+        if(entity!=null){
+            return R.ok().setData(entity);
+        }else{
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getCode(), BizCodeEnume.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+
+    }
+
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+
+        MemberEntity entity = memberService.login(vo);
+        if(entity!=null){
+            return R.ok().setData(entity);
+        }else{
+            return R.error(BizCodeEnume.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getCode(), BizCodeEnume.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+
+    }
+
+    @PostMapping("/regist") //requestbody作用是将请求体的json转成我们封装的vo对象
+    public R regist(@RequestBody MemberRegistVo vo){
+
+        try{
+            memberService.regist(vo);
+        }catch (PhoneExistException e){
+            return R.error(BizCodeEnume.PHONE_EXIST_EXCEPTION.getCode(), BizCodeEnume.PHONE_EXIST_EXCEPTION.getMsg());
+
+        }catch(UsernameExistException e){
+            return R.error(BizCodeEnume.USER_EXIST_EXCEPTION.getCode(), BizCodeEnume.USER_EXIST_EXCEPTION.getMsg());
+        }
+
+        return R.ok();
     }
     /**
      * 列表
