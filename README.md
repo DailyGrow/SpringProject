@@ -1,4 +1,3 @@
-# # SpringProject
 # Highly Concurrent Distributed E-commerce Platform Development
 
 Utilized distributed microservices architecture to design and develop a E-commerce website and a backend management
