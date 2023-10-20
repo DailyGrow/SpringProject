@@ -230,7 +230,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     }
 
     /**
-     * 鼻综合增消息可靠性：防止消息重复，将业务设计成幂等
+     * MQ鼻综合增消息可靠性：防止消息重复，将业务设计成幂等
      * @param to
      */
     @Override //库存解锁逻辑
